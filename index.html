@@ -1,0 +1,50 @@
+<html>
+    <head>  
+        <style>
+            .hidden{
+                visibility: hidden;
+            }
+        </style>
+    </head>
+    <body class="hidden">
+        
+        <script src="sup.js"></script>
+
+        <div s-component="Home" style="font-weight: bold" s-bind:style="ctx.stylish">
+            {{ctx.text}}
+            
+            <span s-if="ctx.test">{{ctx.number}}</span>
+            <br/>
+            <button s-on:click="ctx.toogle($event, i)" s-for="i in 1000">toogle - {{i}}</button>
+        </div>
+        
+        <script>
+            console.time("loading");
+            class Home{
+                constructor(){
+                    this.name = "Home";
+                    this.text = "Ahá!";
+                    this.test = false;
+                    this.stylish = {
+                        'color': 'red',
+                        'font-size': '50px'
+                    };
+                    
+                }
+                toogle(event, i){
+                    console.log(event);
+                    this.number = i;
+                    this.test = !this.test;
+                }
+            }
+
+            Sup.component("Home", Home);
+            
+            Sup.bind("body", ()=>{
+                document.body.classList.remove("hidden");
+                console.timeEnd("loading");
+            });
+        </script>
+    </body>
+
+</html>

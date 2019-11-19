@@ -1,0 +1,50 @@
+<html>
+    <head>  
+        <style>
+            .hidden{
+                visibility: hidden;
+            }
+        </style>
+    </head>
+    <body>
+        
+        <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+        
+        <div id="Home" style="font-weight: bold" v-bind:style="stylish">
+            {{text}}
+            
+            <span v-if="test">{{number}}</span>
+            <br/>
+            <button v-on:click="toogle($event, i)" v-for="i in 1000">toogle - {{i}}</button>
+        </div>
+
+        
+        <script>
+            console.time("loading");
+            var app = new Vue({
+                el: '#Home',
+                data: {
+                    name: "Home",
+                    text: "Ahá!",
+                    test: false,
+                    stylish: {
+                        'color': 'red',
+                        'font-size': '50px'
+                    }
+                },
+                methods: {
+                    toogle(event, i){
+                        console.log(event);
+                        this.number = i;
+                        this.test = !this.test;   
+                    }
+                }
+            });
+            setTimeout(()=>{
+                console.timeEnd("loading");
+            });
+            
+        </script>
+    </body>
+
+</html>

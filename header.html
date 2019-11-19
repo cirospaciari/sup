@@ -1,0 +1,9 @@
+<header>
+    <h1>{{ ctx.title }}</h1>
+    <div c-component="Test2">
+        {{ ctx.title }} - {{parent.title}}
+        <div>{{ json(ctx) }}</div>
+
+        <span c-raw="ctx.subTitle"></span>
+    </div>
+</header>
